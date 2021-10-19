@@ -5,6 +5,10 @@
   /*src: url(/fonts/SourceSansPro-Light.ttf);*/
   src: url("/assets/fonts/SourceSansPro-Light.ttf");
 }
+.card img
+{
+  display: flex;
+}
 
 .blue-label
 {
@@ -780,6 +784,8 @@ textarea { resize: vertical;}
   }
 
 }
+
+
 
 
 @media screen and (max-width: 505px) {

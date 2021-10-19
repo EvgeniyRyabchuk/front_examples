@@ -9,7 +9,7 @@
     <ul class="side-menu">
 <!--      [class.active-menu-item]="i.isActive"-->
       <li *ngFor="let i of menuLinks" class="sm-item" [ngClass]="{'active-menu-item': menuLinks[curIndex].path == i.path}" class="sm-item">
-        <a (click)="navigate(i.path)">
+        <a (click)="navigate(i)">
           <i class="{{i.icon}}"></i>
             <span>{{i.name}}</span>
           <div class="border-shadow-white"></div>

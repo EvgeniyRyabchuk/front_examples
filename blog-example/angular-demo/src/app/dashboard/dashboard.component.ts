@@ -17,10 +17,10 @@ export class DashboardComponent implements OnInit, AfterViewInit{
   ngOnInit(): void { }
 
   ngAfterViewInit() {
-    this.navigateService.curPathSubjech.subscribe((res: string) =>
-    {
-      this.router.navigate([res]);
-      console.log(res);
-    })
+    // this.navigateService.curPathSubjech.subscribe((res: string) =>
+    // {
+    //   this.router.navigate([res]);
+    //   console.log(res);
+    // })
   }
 }

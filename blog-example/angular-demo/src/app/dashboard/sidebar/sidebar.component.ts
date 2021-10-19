@@ -15,14 +15,23 @@ export class SidebarComponent implements OnInit {
 
   public menuLinks =
     [
-      { name: 'Home', path: './', icon: 'fas fa-home', isActive: true },
-      { name: 'Single Post', path: './dashboard/single-post', icon: 'fas fa-pen', isActive: false },
-      { name: 'About Etra', path: './dashboard/about', icon: 'fas fa-users', isActive: false },
-      { name: 'Contact Us', path: './dashboard/contacts', icon: 'far fa-comments', isActive: false },
+      { name: 'Home', path: '/dashboard', icon: 'fas fa-home', isActive: true },
+      { name: 'Single Post', path: '/dashboard/single-post', icon: 'fas fa-pen', isActive: false },
+      { name: 'About Etra', path: '/dashboard/about', icon: 'fas fa-users', isActive: false },
+      { name: 'Contact Us', path: '/dashboard/contacts', icon: 'far fa-comments', isActive: false },
     ]
   constructor(private router: Router, private navigateService: NavigateService) { }
 
   ngOnInit(): void {
+    console.log(this.router.url);
+    for (let i of this.menuLinks)
+    {
+      if(i.path == this.router.url) {
+        this.menuLinks[this.curIndex].isActive = false;
+        i.isActive = true;
+        this.curIndex = this.menuLinks.indexOf(i);
+      }
+    }
   }
 
   openSideBar(event: any): void
@@ -34,23 +43,11 @@ export class SidebarComponent implements OnInit {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  navigate(url: string):void
+  navigate(obj: any):void
   {
     this.menuLinks[this.curIndex].isActive = false;
-    let counter:number = 0;
-    for (let i in this.menuLinks)
-    {
-      if(this.menuLinks[i].path == url)
-      {
-        this.curIndex = counter;
-      }
-      counter++;
-    }
-    this.menuLinks[this.curIndex].isActive = true;
-    console.log(this.menuLinks[this.curIndex].isActive);
-    this.navigateService.curPathSubjech.next(url)
-    // this.router.navigate([url]);
-
+    this.curIndex = this.menuLinks.indexOf(obj);
+    this.navigateService.navigateTo(obj.path);
   }
 
 }
